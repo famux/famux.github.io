@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>FAMUX Auto Publisher</title>
+<style>
+body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:#0A0A0A;color:#fff}
+.top{display:flex;align-items:center;gap:12px;padding:14px 22px;border-bottom:1px solid #222}
+.logo{width:34px;height:34px;border-radius:8px;background:#D4AF37;color:#0A0A0A;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:19px}
+.title{font-size:17px;font-weight:700}
+.sub{font-size:11px;color:#999}
+.wrap{display:flex;gap:24px;padding:22px;align-items:flex-start}
+.left{width:250px}
+.phone{background:#111;border-radius:16px;padding:10px;border:1px solid #2a2a2a}
+.phone img{width:100%;border-radius:10px;display:block}
+.right{flex:1;min-width:0}
+.card{background:#141414;border:1px solid #262626;border-radius:14px;padding:16px;margin-bottom:14px}
+.lbl{font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.field{background:#1d1d1d;border:1px solid #333;border-radius:8px;padding:10px;font-size:13px;color:#e8e8e8;line-height:1.5}
+.tags span{display:inline-block;background:#1c1c1c;border:1px solid #333;color:#D4AF37;border-radius:12px;padding:3px 10px;font-size:11px;margin:3px 3px 0 0}
+.btn{background:#D4AF37;color:#0A0A0A;font-weight:700;border:0;border-radius:10px;padding:14px;width:100%;font-size:14px;cursor:pointer}
+.seg{display:flex;gap:8px}
+.seg div{flex:1;text-align:center;padding:8px;border:1px solid #333;border-radius:8px;font-size:12px;color:#bbb}
+.seg .on{border-color:#D4AF37;color:#D4AF37}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;z-index:9}
+.modal .box{background:#161616;border:1px solid #2e2e2e;border-radius:16px;padding:34px 40px;text-align:center;max-width:430px}
+.spin{width:44px;height:44px;border:4px solid #2a2a2a;border-top-color:#D4AF37;border-radius:50%;margin:0 auto 18px;animation:s 1s linear infinite}
+@keyframes s{to{transform:rotate(360deg)}}
+.ok{width:56px;height:56px;border-radius:50%;background:#1f8a4c;color:#fff;font-size:30px;line-height:56px;margin:0 auto 14px}
+.h2{font-size:16px;font-weight:700;margin-bottom:6px}
+.p{font-size:12.5px;color:#aaa;line-height:1.6}
+.code{background:#0d0d0d;border:1px solid #2a2a2a;border-radius:6px;padding:6px 10px;font-family:Consolas,monospace;font-size:11px;color:#D4AF37;display:inline-block;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="logo">F</div>
+  <div><div class="title">FAMUX Auto Publisher</div><div class="sub">Connected to @famuxstore · Scheduling daily carousels</div></div>
+  <div style="flex:1"></div>
+  <div style="font-size:11px;color:#999;text-align:right">Content Posting API · Direct Post<br>OAuth scopes: user.info.basic, video.upload, video.publish</div>
+</div>
+<div class="wrap">
+  <div class="left">
+    <div class="lbl" style="margin-bottom:8px">Carousel preview (9:16)</div>
+    <div class="phone" id="phone"></div>
+  </div>
+  <div class="right">
+    <div class="card"><div class="lbl">Title</div><div class="field">Si todavia no tienes un aspirador de coche inalambrico, esto es para ti</div></div>
+    <div class="card"><div class="lbl">Description</div><div class="field">Potente aspirador recargable para el interior del coche: 12000Pa de succion, portatil, con accesorios para rincones. Envio 10-15 dias. LINK EN BIO</div></div>
+    <div class="card"><div class="lbl">Hashtags</div><div class="tags"><span>#aspirador</span><span>#coche</span><span>#limpieza</span><span>#accesorioscoche</span><span>#famux</span><span>#gadgets</span></div></div>
+    <div class="card"><div class="lbl">Who can view this post</div><div class="seg"><div class="on">Private</div><div>Followers</div><div>Public</div></div></div>
+    <button class="btn" onclick="doPost()">Post to TikTok &rarr;</button>
+  </div>
+</div>
+<div id="modal"></div>
+<script>
+var slides='aspirador-coche-abs-inalambrico-portatil-recargable';
+var imgs=['slide-00','slide-01','slide-02','slide-03','slide-04'];
+var i=0;
+function render(){document.getElementById('phone').innerHTML='<img src="https://famux.github.io/img/'+slides+'/'+imgs[i]+'.png" alt="slide">';}
+setInterval(function(){i=(i+1)%imgs.length;render();},1100);
+render();
+var params=new URLSearchParams(location.search);
+var st=params.get('state')||'app';
+function modal(html){document.getElementById('modal').innerHTML='<div class="modal"><div class="box">'+html+'</div></div>';}
+function doPost(){
+  location.href=location.pathname+'?state=auth';
+}
+if(st==='auth'){
+  modal('<div class="spin"></div><div class="h2">Connecting to TikTok...</div><div class="p">Redirecting to the TikTok authorization page, where @famuxstore approves the publishing permissions.</div>');
+  setTimeout(function(){location.href=location.pathname+'?state=done';},2600);
+} else if(st==='done'){
+  modal('<div class="ok">&#10003;</div><div class="h2">Posted to TikTok</div><div class="p">Carousel published to <b>@famuxstore</b>.<br>Status: PUBLISH_COMPLETE<br>While the app is unaudited, posts stay in private (SELF_ONLY) view. After TikTok review, they publish as public automatically.</div>');
+}
+</script>
+</body>
+</html>
