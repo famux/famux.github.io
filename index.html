@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAMUX Auto Publisher</title>
+<style>
+  :root { --gold:#D4AF37; --dark:#0A0A0A; --dark2:#1A1A1A; --white:#FFFFFF; --soft:#CCCCCC; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--dark); color:var(--white); font-family:'Segoe UI',Arial,sans-serif; line-height:1.6; }
+  header { padding:28px 20px; border-bottom:1px solid #2a2a2a; }
+  header .logo { font-size:1.4rem; font-weight:700; color:var(--gold); letter-spacing:1px; }
+  main { max-width:760px; margin:0 auto; padding:48px 20px 72px; }
+  h1 { font-size:2.2rem; margin-bottom:16px; color:var(--white); }
+  h1 span { color:var(--gold); }
+  p { color:var(--soft); margin-bottom:16px; font-size:1.05rem; }
+  .card { background:var(--dark2); border:1px solid #2a2a2a; border-radius:12px; padding:24px; margin:20px 0; }
+  .card h2 { color:var(--gold); font-size:1.1rem; margin-bottom:8px; }
+  ul { padding-left:22px; color:var(--soft); }
+  ul li { margin-bottom:8px; }
+  .links { margin-top:28px; display:flex; gap:16px; flex-wrap:wrap; }
+  .links a { color:var(--white); background:var(--gold); color:#0A0A0A; text-decoration:none; padding:10px 20px; border-radius:8px; font-weight:600; }
+  footer { text-align:center; padding:20px; color:#777; font-size:.85rem; border-top:1px solid #2a2a2a; }
+</style>
+</head>
+<body>
+<header><div class="logo">FAMUX</div></header>
+<main>
+  <h1>FAMUX <span>Auto Publisher</span></h1>
+  <p>Herramienta que conecta tu tienda online con TikTok para publicar automáticamente contenido de tus productos: carruseles de fotos, descripciones y hashtags en horarios programados.</p>
+  <div class="card">
+    <h2>Qué hace</h2>
+    <ul>
+      <li>Lee los productos activos de tu tienda.</li>
+      <li>Genera imágenes 9:16 con la marca de la tienda.</li>
+      <li>Publica como carrusel de fotos en tu cuenta de TikTok.</li>
+      <li>Programa publicaciones en horarios de máxima audiencia.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Cómo funciona</h2>
+    <p>Conectas tu cuenta de TikTok una vez (login seguro con OAuth). La herramienta solicita únicamente los permisos necesarios para subir y publicar contenido (<code>user.info.basic</code>, <code>video.upload</code>, <code>video.publish</code>). Tú conservas el control y puedes revocar el acceso en cualquier momento desde tu cuenta de TikTok.</p>
+  </div>
+  <div class="links">
+    <a href="privacy.html">Política de Privacidad</a>
+    <a href="tos.html">Términos de Servicio</a>
+  </div>
+</main>
+<footer>&copy; 2026 FAMUX. Todos los derechos reservados.</footer>
+</body>
+</html>
